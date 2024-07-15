@@ -2,7 +2,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, PanResponder, Text, ImageBackground } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import TouchCircle from './TouchCircle';
+import GalaxyTouchCircle from './GalaxyTouchCircle';
+import CloudTouchCircle from './CloudTouchCircle';
+import ParkingTouchCircle from './ParkingTouchCircle';
+import TableTouchCircle from './TableTouchCircle';
 import { useFonts } from 'expo-font';
 
 const GameScreen = () => {
@@ -126,8 +129,13 @@ const GameScreen = () => {
     }, [isCounting, touches]);
 
     if (!fontsLoaded) {
-        return null; // Or some loading indicator
+        return null;
     }
+
+    const TouchCircleComponent = theme === 'galaxy' ? GalaxyTouchCircle
+        : theme === 'cloud' ? CloudTouchCircle
+            : theme === 'parking' ? ParkingTouchCircle
+                : TableTouchCircle;
 
     return (
         <ImageBackground
@@ -144,12 +152,11 @@ const GameScreen = () => {
         >
             <View style={styles.container} {...panResponder.panHandlers}>
                 {touches.map(touch => (
-                    <TouchCircle
+                    <TouchCircleComponent
                         key={touch.id}
                         touch={touch}
-                        isSelected={touch.id === selectedTouch}
                         isWinner={touch.id === winner}
-                        theme={theme}
+                        isSelected={touch.id === selectedTouch}
                     />
                 ))}
                 <Text style={styles.counter}>Players: {touches.length}</Text>
