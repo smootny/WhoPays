@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import Animated, { useAnimatedStyle, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 
-const SIZE = 80;
+const SIZE = 100;
 
 const GLOW_INITIAL_SCALE = 1.6; // Scale of the glow
 const GLOW_MINIMUM_SCALE = 1.2;

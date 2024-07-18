@@ -32,7 +32,7 @@ const GameScreen = () => {
     };
 
     const selectWinner = () => {
-        if (touches.length > 0) {
+        if (touches.length > 1) {
             const randomIndex = Math.floor(Math.random() * touches.length);
             setWinner(touches[randomIndex].id);
         }

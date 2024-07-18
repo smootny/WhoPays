@@ -44,7 +44,7 @@ export default function Login() {
                             placeholder={{ label: 'Galaxy Theme', value: 'galaxy' }}
                         />
                     </View>
-                    <CircularButton title="GO!" onPress={handlePress} style={styles.button} />
+                    <CircularButton onPress={handlePress} style={styles.button} />
                 </ImageBackground>
             </View>
         </View>
@@ -87,23 +87,25 @@ const styles = StyleSheet.create({
     pickerContainer: {
         position: 'absolute',
         bottom: 60,
-        width: '80%',
+        width: '75%',
         alignSelf: 'center',
         zIndex: 3,
+        // fontFamily: 'CallDuty',
     },
 });
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 16,
+        fontSize: 20,
         paddingVertical: 12,
         paddingHorizontal: 10,
         borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 4,
-        color: 'white',
+        borderColor: '#c7263a',
+        borderRadius: 26,
+        color: '#d0b400',
         paddingRight: 30, // to ensure the text is never behind the icon
         textAlign: 'center',
+        fontFamily: 'CallDuty',
     },
     inputAndroid: {
         fontSize: 16,
@@ -112,7 +114,7 @@ const pickerSelectStyles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: 'white',
         borderRadius: 8,
-        color: 'white',
+        color: '#d0b400',
         paddingRight: 30, // to ensure the text is never behind the icon
     },
 });

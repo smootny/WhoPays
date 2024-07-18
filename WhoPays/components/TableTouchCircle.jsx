@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import Animated, { useAnimatedStyle, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 
-const SIZE = 100;
+const SIZE = 120;
 
 const GLOW_INITIAL_SCALE = 1.1;
 const GLOW_MINIMUM_SCALE = 1.1;
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     image: {
         width: SIZE,
         height: SIZE,
+
     },
     container: {
         position: 'absolute',
