@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
     },
     counter: {
         position: 'absolute',
-        bottom: 50,
-        left: 20,
+        top: 70,
+        right: 20,
         color: '#FFF',
         fontSize: 24,
         fontFamily: 'CallDuty',

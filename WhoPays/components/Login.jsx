@@ -5,14 +5,13 @@ import CircularButton from './CircularButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from 'expo-router';
 import Title from './Title';
-import RNPickerSelect from 'react-native-picker-select';
+import ThemeButton from './ThemeButton';
 
 export default function Login() {
     const navigation = useNavigation();
     const [theme, setTheme] = useState('galaxy');
 
     const handlePress = () => {
-        // Navigate to GameScreen with selected theme
         navigation.navigate('gameScreen', { theme });
     };
 
@@ -32,19 +31,8 @@ export default function Login() {
                     <View style={styles.titleContainer}>
                         <Title style={styles.title} />
                     </View>
-                    <View style={styles.pickerContainer}>
-                        <RNPickerSelect
-                            onValueChange={(value) => setTheme(value)}
-                            items={[
-                                { label: 'Cloud Theme', value: 'cloud' },
-                                { label: 'Parking Theme', value: 'parking' },
-                                { label: 'Table Theme', value: 'table' },
-                            ]}
-                            style={pickerSelectStyles}
-                            placeholder={{ label: 'Galaxy Theme', value: 'galaxy' }}
-                        />
-                    </View>
-                    <CircularButton onPress={handlePress} style={styles.button} />
+                    <ThemeButton  style={styles.themeButton} onSelectTheme={setTheme} />
+                    <CircularButton  title="Play Game" onPress={handlePress} style={styles.button} />
                 </ImageBackground>
             </View>
         </View>
@@ -66,9 +54,17 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        bottom: 140, // Adjust as needed
+        bottom: 140,
         alignSelf: 'center',
         zIndex: 2,
+        marginVertical: 10,
+    },
+    themeButton: {
+        position: 'absolute',
+        bottom: 100,
+        alignSelf: 'center',
+        zIndex: 2,
+        marginVertical: 10,
     },
     gradient: {
         position: 'absolute',
@@ -90,31 +86,7 @@ const styles = StyleSheet.create({
         width: '75%',
         alignSelf: 'center',
         zIndex: 3,
-        // fontFamily: 'CallDuty',
     },
 });
 
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 20,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: '#c7263a',
-        borderRadius: 26,
-        color: '#d0b400',
-        paddingRight: 30, // to ensure the text is never behind the icon
-        textAlign: 'center',
-        fontFamily: 'CallDuty',
-    },
-    inputAndroid: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: 'white',
-        borderRadius: 8,
-        color: '#d0b400',
-        paddingRight: 30, // to ensure the text is never behind the icon
-    },
-});
+
