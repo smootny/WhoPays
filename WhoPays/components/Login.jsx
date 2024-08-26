@@ -1,25 +1,28 @@
-// components/Login.jsx
 import React, { useState } from 'react';
-import { View, ImageBackground, StyleSheet } from 'react-native';
+import { View, ImageBackground, StyleSheet, Vibration } from 'react-native';
 import CircularButton from './CircularButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from 'expo-router';
 import Title from './Title';
 import ThemeButton from './ThemeButton';
+import * as Haptics from 'expo-haptics';
+
 
 export default function Login() {
     const navigation = useNavigation();
     const [theme, setTheme] = useState('galaxy');
 
     const handlePress = () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
         navigation.navigate('gameScreen', { theme });
     };
+
 
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
                 <ImageBackground
-                    source={require('./../assets/images/startImage.png')}
+                    source={require('./../assets/images/finger9.png')}
                     style={styles.image}
                 >
                     <LinearGradient
@@ -54,14 +57,14 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        bottom: 140,
+        bottom: 100,
         alignSelf: 'center',
         zIndex: 2,
         marginVertical: 10,
     },
     themeButton: {
         position: 'absolute',
-        bottom: 100,
+        bottom: 60,
         alignSelf: 'center',
         zIndex: 2,
         marginVertical: 10,

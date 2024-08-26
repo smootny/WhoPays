@@ -1,12 +1,12 @@
-// components/GameScreen.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, PanResponder, Text, ImageBackground } from 'react-native';
+import { View, StyleSheet, PanResponder, Text, ImageBackground, TouchableOpacity, Animated, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import GalaxyTouchCircle from './GalaxyTouchCircle';
 import CloudTouchCircle from './CloudTouchCircle';
 import ParkingTouchCircle from './ParkingTouchCircle';
 import TableTouchCircle from './TableTouchCircle';
 import { useFonts } from 'expo-font';
+import * as Haptics from "expo-haptics";
 
 const GameScreen = () => {
     const route = useRoute();
@@ -16,6 +16,9 @@ const GameScreen = () => {
     const [selectedTouch, setSelectedTouch] = useState(null);
     const [isCounting, setIsCounting] = useState(false);
     const [winner, setWinner] = useState(null);
+    const [showOverlay, setShowOverlay] = useState(true); // State for black screen overlay
+    const opacityAnim = useRef(new Animated.Value(1)).current; // Animation for fading out the overlay
+
     const timeoutRef = useRef(null);
     const countingTimeoutRef = useRef(null);
 
@@ -43,6 +46,16 @@ const GameScreen = () => {
             onStartShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponder: () => true,
             onPanResponderGrant: (evt) => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+                if (showOverlay) {
+                    Animated.timing(opacityAnim, {
+                        toValue: 0,
+                        duration: 500,
+                        useNativeDriver: true,
+                    }).start(() => {
+                        setShowOverlay(false);
+                    });
+                }
                 clearTimeout(timeoutRef.current);
                 clearTimeout(countingTimeoutRef.current);
                 const { touches: allTouches } = evt.nativeEvent;
@@ -160,6 +173,15 @@ const GameScreen = () => {
                     />
                 ))}
                 <Text style={styles.counter}>Players: {touches.length}</Text>
+                {showOverlay && (
+                    <Animated.View style={[styles.overlay, { opacity: opacityAnim }]}>
+                        <Text style={styles.overlayText}>Touch the screen </Text>
+                        <Image
+                            source={require('../assets/images/touch-screen.png')}
+                            style={styles.icon}
+                        />
+                    </Animated.View>
+                )}
             </View>
         </ImageBackground>
     );
@@ -180,6 +202,24 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 24,
         fontFamily: 'CallDuty',
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 10,
+    },
+    overlayText: {
+        color: '#FFF',
+        fontSize: 30,
+        fontFamily: 'CallDuty',
+    },
+    icon: {
+        width: 200,
+        height: 200,
+        top: 40,
+        resizeMode: 'contain',
     },
 });
 

@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
             position: 'absolute',
             fontSize: 76,
             textAlign: 'center',
-            marginTop: 20,
+            marginTop: 10,
             zIndex: 99,
             fontFamily: "CallDuty",
             color: '#FFF',
             textShadowColor: 'rgba(0, 0, 0, 0.75)',
             textShadowOffset: {width: -1, height: 1},
-            textShadowRadius: 10,
+            textShadowRadius: 20,
     }
 });

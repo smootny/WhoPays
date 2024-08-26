@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import ThemeModal from './ThemeModal';
+import * as Haptics from "expo-haptics";
 
 const ThemeButton = ({ style, onSelectTheme }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [theme, setTheme] = useState('Select Theme');
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
 
     const handleThemeSelect = (selectedTheme) => {
         setTheme(selectedTheme);
         setModalVisible(false);
         onSelectTheme(selectedTheme);
     };
+
 
     return (
         <View style={style}>
