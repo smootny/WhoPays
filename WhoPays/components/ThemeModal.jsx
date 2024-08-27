@@ -1,17 +1,18 @@
+// components/ThemeModal.jsx
 import React, { useEffect } from 'react';
-import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Modal, View, Text, StyleSheet } from 'react-native';
 import { ThemedButton } from "react-native-really-awesome-button";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, BounceIn } from 'react-native-reanimated';
+import ThemeTile from './ThemeTile';
 
 const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
     const themes = [
-        { label: 'Galaxy Theme', value: 'galaxy' },
-        { label: 'Cloud Theme', value: 'cloud' },
-        { label: 'Parking Theme', value: 'parking' },
-        { label: 'Table Theme', value: 'table' },
+        { label: 'Galaxy Theme', value: 'galaxy', image: require('../assets/themes/galaxy_theme/galaxy.png') },
+        { label: 'Cloud Theme', value: 'cloud', image: require('../assets/themes/cloud_theme/sky.png') },
+        { label: 'Parking Theme', value: 'parking', image: require('../assets/themes/parking_theme/parking.png') },
+        { label: 'Table Theme', value: 'table', image: require('../assets/themes/table_theme/table.png') },
     ];
 
-    // Shared value for background opacity
     const backgroundOpacity = useSharedValue(0);
 
     // Animated style for the modal background fade-in effect
@@ -29,31 +30,26 @@ const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
         }
     }, [visible, backgroundOpacity]);
 
+
     return (
         <Modal visible={visible} transparent={true} animationType="none">
             <Animated.View style={[styles.modalBackground, animatedBackgroundStyle]}>
                 <Animated.View style={styles.modalContainer} entering={BounceIn.duration(500)}>
                     <Text style={styles.modalTitle}>Select Theme</Text>
-                    {themes.map((theme) => (
-                        <TouchableOpacity
-                            key={theme.value}
-                            style={styles.themeOption}
-                            onPress={() => onSelectTheme(theme.value)}
-                        >
-                            <Text style={styles.themeText}>{theme.label}</Text>
-                        </TouchableOpacity>
-                    ))}
-                    <TouchableOpacity>
-                        <ThemedButton
-                            name="cartman"
-                            type="secondary"
-                            width={100}
-                            style={styles.closeButton}
-                            onPress={onClose}
-                        >
-                            <Text style={styles.closeButtonText}>Close</Text>
-                        </ThemedButton>
-                    </TouchableOpacity>
+                    <View style={styles.tilesContainer}>
+                        {themes.map((theme) => (
+                            <ThemeTile key={theme.value} theme={theme} onSelect={onSelectTheme} />
+                        ))}
+                    </View>
+                    <ThemedButton
+                        name="cartman"
+                        type="secondary"
+                        width={100}
+                        style={styles.closeButton}
+                        onPress={onClose}
+                    >
+                        <Text style={styles.closeButtonText}>Close</Text>
+                    </ThemedButton>
                 </Animated.View>
             </Animated.View>
         </Modal>
@@ -63,7 +59,7 @@ const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
 const styles = StyleSheet.create({
     modalBackground: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -80,19 +76,13 @@ const styles = StyleSheet.create({
         fontFamily: 'CallDuty',
         color: '#DA4456',
     },
-    themeOption: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-        width: '100%',
-        alignItems: 'center',
-    },
-    themeText: {
-        fontSize: 28,
-        fontFamily: 'CallDuty',
+    tilesContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
     },
     closeButton: {
-        marginTop: 10,
+        marginTop: 20,
     },
     closeButtonText: {
         fontSize: 20,
@@ -102,3 +92,4 @@ const styles = StyleSheet.create({
 });
 
 export default ThemeModal;
+

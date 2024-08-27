@@ -9,8 +9,8 @@ const CircularButton = ({ onPress, style, title }) => {
             <ThemedButton
                 name="cartman"
                 type="secondary"
-                width={320}
-                height={100}
+                width={300}
+                height={80}
                 borderRadius={45}
                 style={styles.play}
                 onPress={onPress}
@@ -29,7 +29,7 @@ CircularButton.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 130,
+        marginBottom: 80,
     },
     title: {
         color: '#ffe11d',

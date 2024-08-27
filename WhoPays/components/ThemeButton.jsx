@@ -22,8 +22,8 @@ const ThemeButton = ({ style, onSelectTheme }) => {
                 <ThemedButton
                     name="cartman"
                     type="secondary"
-                    width={320}
-                    height={100}
+                    width={300}
+                    height={80}
                     borderRadius={45}
                     style={styles.play}
                     onPress={() => setModalVisible(true)}
@@ -38,7 +38,7 @@ const ThemeButton = ({ style, onSelectTheme }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 20,
+        marginBottom: 0,
     },
     title: {
         color: '#ffe11d',

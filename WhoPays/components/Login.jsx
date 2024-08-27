@@ -22,7 +22,7 @@ export default function Login() {
         <View style={styles.container}>
             <View style={styles.imageContainer}>
                 <ImageBackground
-                    source={require('./../assets/images/finger9.png')}
+                    source={require('./../assets/images/finger4.png')}
                     style={styles.image}
                 >
                     <LinearGradient

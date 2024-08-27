@@ -15,7 +15,8 @@ export default function Title() {
 
     return (
             <View>
-                <Text style={styles.title}>Who Pays?!</Text>
+                <Text style={styles.title}>Who</Text>
+                <Text style={styles.titleSecond}>Pays?!</Text>
             </View>
     )
 }
@@ -23,15 +24,32 @@ export default function Title() {
 const styles = StyleSheet.create({
 
     title: {
+        position: 'absolute',
+        fontSize: 186,
+        textAlign: 'center',
+        marginTop: -20,
+        marginLeft: 15,
+        zIndex: 99,
+        fontFamily: "CallDuty",
+        color: '#FFF',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 20,
+    },
+        titleSecond: {
             position: 'absolute',
             fontSize: 76,
             textAlign: 'center',
-            marginTop: 10,
+            marginTop: 140,
+            marginLeft: 80,
             zIndex: 99,
             fontFamily: "CallDuty",
             color: '#FFF',
             textShadowColor: 'rgba(0, 0, 0, 0.75)',
             textShadowOffset: {width: -1, height: 1},
             textShadowRadius: 20,
-    }
+        }
+
+
+
 });
