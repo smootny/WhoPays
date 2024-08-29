@@ -16,8 +16,8 @@ const GameScreen = () => {
     const [selectedTouch, setSelectedTouch] = useState(null);
     const [isCounting, setIsCounting] = useState(false);
     const [winner, setWinner] = useState(null);
-    const [showOverlay, setShowOverlay] = useState(true); // State for black screen overlay
-    const opacityAnim = useRef(new Animated.Value(1)).current; // Animation for fading out the overlay
+    const [showOverlay, setShowOverlay] = useState(true);
+    const opacityAnim = useRef(new Animated.Value(1)).current;
 
     const timeoutRef = useRef(null);
     const countingTimeoutRef = useRef(null);
@@ -135,7 +135,7 @@ const GameScreen = () => {
             const intervalId = setInterval(() => {
                 const randomIndex = Math.floor(Math.random() * touches.length);
                 setSelectedTouch(touches[randomIndex].id);
-            }, 100); // Switch faster, every 0.1 seconds
+            }, 100);
 
             return () => clearInterval(intervalId);
         }

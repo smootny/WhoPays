@@ -1,4 +1,3 @@
-// components/ThemeModal.jsx
 import React, { useEffect } from 'react';
 import { Modal, View, Text, StyleSheet } from 'react-native';
 import { ThemedButton } from "react-native-really-awesome-button";

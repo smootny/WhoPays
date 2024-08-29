@@ -1,4 +1,3 @@
-// components/Login.jsx
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { useNavigation } from 'expo-router';
