@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, PanResponder, Text, ImageBackground, TouchableOpacity, Animated, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import DiamondTouchCircle from './DiamondTouchCircle';
 import GalaxyTouchCircle from './GalaxyTouchCircle';
 import CloudTouchCircle from './CloudTouchCircle';
 import ParkingTouchCircle from './ParkingTouchCircle';
 import TableTouchCircle from './TableTouchCircle';
+import MineTouchCircle from './MineTouchCircle';
 import { useFonts } from 'expo-font';
 import * as Haptics from "expo-haptics";
 
@@ -147,8 +149,10 @@ const GameScreen = () => {
 
     const TouchCircleComponent = theme === 'galaxy' ? GalaxyTouchCircle
         : theme === 'cloud' ? CloudTouchCircle
-            : theme === 'parking' ? ParkingTouchCircle
-                : TableTouchCircle;
+        : theme === 'parking' ? ParkingTouchCircle
+        : theme === 'table' ? TableTouchCircle
+        : theme === 'mine' ? MineTouchCircle
+        : DiamondTouchCircle;
 
     return (
         <ImageBackground
@@ -159,7 +163,11 @@ const GameScreen = () => {
                         ? require('../assets/themes/cloud_theme/sky.png')
                         : theme === 'parking'
                             ? require('../assets/themes/parking_theme/parking.png')
-                            : require('../assets/themes/table_theme/table.png')
+                            : theme === 'table'
+                                ? require('../assets/themes/table_theme/table.png')
+                                : theme === 'mine'
+                                    ? require('../assets/themes/mine_theme/mine1.png')
+                                    : require('../assets/themes/diamond_theme/jewelry.jpg')
             }
             style={styles.background}
         >

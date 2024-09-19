@@ -10,11 +10,13 @@ const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
         { label: 'Cloud Theme', value: 'cloud', image: require('../assets/themes/cloud_theme/sky.png') },
         { label: 'Parking Theme', value: 'parking', image: require('../assets/themes/parking_theme/parking.png') },
         { label: 'Table Theme', value: 'table', image: require('../assets/themes/table_theme/table.png') },
+        { label: 'Mine Theme', value: 'mine', image: require('../assets/themes/mine_theme/mine1.png') },
+        { label: 'Diamond Theme', value: 'diamond', image: require('../assets/themes/diamond_theme/jewelry.jpg') },
     ];
 
     const backgroundOpacity = useSharedValue(0);
 
-    // Animated style for the modal background fade-in effect
+    // Animated style for the modal background fade-in effecta
     const animatedBackgroundStyle = useAnimatedStyle(() => {
         return {
             opacity: withTiming(backgroundOpacity.value, { duration: 400 }),

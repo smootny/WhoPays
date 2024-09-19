@@ -4,8 +4,8 @@ import Animated, { useAnimatedStyle, withRepeat, withSequence, withTiming } from
 
 const SIZE = 120;
 
-const GLOW_INITIAL_SCALE = 1.1;
-const GLOW_MINIMUM_SCALE = 1.1;
+const GLOW_INITIAL_SCALE = 1;
+const GLOW_MINIMUM_SCALE = 1;
 const GLOW_DURATION = 3000;
 
 const TableTouchCircle = ({ touch, isSelected, isWinner }) => {
