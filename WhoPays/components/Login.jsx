@@ -6,14 +6,17 @@ import { useNavigation } from 'expo-router';
 import Title from './Title';
 import ThemeButton from './ThemeButton';
 import * as Haptics from 'expo-haptics';
-
+import { themes } from '../constants/themes';
 
 export default function Login() {
     const navigation = useNavigation();
-    const [theme, setTheme] = useState('galaxy');
+    const [selectedTheme, setSelectedTheme] = useState(null)
 
     const handlePress = () => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        const theme = selectedTheme || themes[Math.floor(Math.random() * themes.length)].value;
+
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
         navigation.navigate('gameScreen', { theme });
     };
 
@@ -34,7 +37,7 @@ export default function Login() {
                     <View style={styles.titleContainer}>
                         <Title style={styles.title} />
                     </View>
-                    <ThemeButton  style={styles.themeButton} onSelectTheme={setTheme} />
+                    <ThemeButton  style={styles.themeButton} onSelectTheme={setSelectedTheme} />
                     <CircularButton  title="Play Game" onPress={handlePress} style={styles.button} />
                 </ImageBackground>
             </View>

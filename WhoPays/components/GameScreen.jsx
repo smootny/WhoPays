@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, PanResponder, Text, ImageBackground, TouchableOpacity, Animated, Image } from 'react-native';
+import { View, StyleSheet, PanResponder, Text, ImageBackground, Animated, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import DiamondTouchCircle from './DiamondTouchCircle';
-import GalaxyTouchCircle from './GalaxyTouchCircle';
 import CloudTouchCircle from './CloudTouchCircle';
-import ParkingTouchCircle from './ParkingTouchCircle';
 import TableTouchCircle from './TableTouchCircle';
 import MineTouchCircle from './MineTouchCircle';
 import { useFonts } from 'expo-font';
@@ -147,9 +145,7 @@ const GameScreen = () => {
         return null;
     }
 
-    const TouchCircleComponent = theme === 'galaxy' ? GalaxyTouchCircle
-        : theme === 'cloud' ? CloudTouchCircle
-        : theme === 'parking' ? ParkingTouchCircle
+    const TouchCircleComponent = theme === 'cloud' ? CloudTouchCircle
         : theme === 'table' ? TableTouchCircle
         : theme === 'mine' ? MineTouchCircle
         : DiamondTouchCircle;
@@ -157,17 +153,13 @@ const GameScreen = () => {
     return (
         <ImageBackground
             source={
-                theme === 'galaxy'
-                    ? require('../assets/themes/galaxy_theme/galaxy.png')
-                    : theme === 'cloud'
+                    theme === 'cloud'
                         ? require('../assets/themes/cloud_theme/sky.png')
-                        : theme === 'parking'
-                            ? require('../assets/themes/parking_theme/parking.png')
                             : theme === 'table'
                                 ? require('../assets/themes/table_theme/table.png')
                                 : theme === 'mine'
-                                    ? require('../assets/themes/mine_theme/mine1.png')
-                                    : require('../assets/themes/diamond_theme/jewelry.jpg')
+                                    ? require('../assets/themes/mine_theme/mine.png')
+                                    : require('../assets/themes/diamond_theme/jewelry.png')
             }
             style={styles.background}
         >
