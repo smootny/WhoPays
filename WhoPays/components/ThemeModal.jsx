@@ -10,7 +10,6 @@ const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
 
     const backgroundOpacity = useSharedValue(0);
 
-    // Animated style for the modal background fade-in effecta
     const animatedBackgroundStyle = useAnimatedStyle(() => {
         return {
             opacity: withTiming(backgroundOpacity.value, { duration: 400 }),

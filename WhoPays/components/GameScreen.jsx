@@ -31,7 +31,7 @@ const GameScreen = () => {
         countingTimeoutRef.current = setTimeout(() => {
             setIsCounting(false);
             selectWinner();
-        }, 10000); // Extend the duration to 10 seconds
+        }, 10000); 
     };
 
     const selectWinner = () => {
@@ -79,7 +79,7 @@ const GameScreen = () => {
                     });
                     return updatedTouches;
                 });
-                setWinner(null); // Reset winner when new touch is detected
+                setWinner(null);
             },
             onPanResponderMove: (evt) => {
                 clearTimeout(timeoutRef.current);
@@ -114,7 +114,7 @@ const GameScreen = () => {
                             : touch
                     )
                 );
-                timeoutRef.current = setTimeout(startCounting, 2000); // Start counting after 2 seconds of no new touches
+                timeoutRef.current = setTimeout(startCounting, 2000); 
             },
             onPanResponderTerminate: (evt) => {
                 const { changedTouches } = evt.nativeEvent;
@@ -125,7 +125,7 @@ const GameScreen = () => {
                             : touch
                     )
                 );
-                timeoutRef.current = setTimeout(startCounting, 2000); // Start counting after 2 seconds of no new touches
+                timeoutRef.current = setTimeout(startCounting, 2000); 
             },
         })
     ).current;

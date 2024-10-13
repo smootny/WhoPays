@@ -12,6 +12,12 @@
       "resizeMode": "contain",
       "backgroundColor": "#DB4457"
     },
+    "fonts": [
+      {
+        "asset": "assets/fonts/CallDuty.ttf",
+        "family": "CallDuty"
+      }
+    ],
     "ios": {
       "supportsTablet": true
     },

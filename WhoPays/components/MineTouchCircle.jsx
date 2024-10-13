@@ -38,7 +38,6 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
     }
   }, [isSelected, isWinner]);
 
-  // Handler to loop the background animation between specific frames
   const handleBackgroundAnimationFinish = () => {
     if (backgroundRef.current && (isSelected || isWinner)) {
       backgroundRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME);
@@ -89,7 +88,7 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
         ref={backgroundRef}
         source={require('../assets/themes/mine_theme/background2.json')}
         style={[styles.lottieShine, !(isSelected || isWinner) && { opacity: 0 }]}
-        loop={false} // Set loop to false since we're controlling looping manually
+        loop={false} 
         autoPlay={false}
         onAnimationFinish={handleBackgroundAnimationFinish}
       />
