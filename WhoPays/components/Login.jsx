@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ImageBackground, StyleSheet, Vibration } from 'react-native';
+import { View, ImageBackground, StyleSheet } from 'react-native';
 import CircularButton from './CircularButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from 'expo-router';

@@ -38,7 +38,6 @@ const DiamondTouchCircle = ({ touch, isSelected, isWinner }) => {
     }
   }, [isSelected, isWinner]);
 
-  // Glow animation
   const glowAnimation = useAnimatedStyle(() => {
     if (isSelected || isWinner) {
       return {

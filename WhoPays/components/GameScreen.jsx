@@ -103,7 +103,7 @@ const GameScreen = () => {
                     });
                     return updatedTouches;
                 });
-                setWinner(null); // Reset winner when touches move
+                setWinner(null);
             },
             onPanResponderRelease: (evt) => {
                 const { changedTouches } = evt.nativeEvent;
