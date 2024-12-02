@@ -23,77 +23,34 @@ const DiamondTouchCircle = ({ touch, isSelected, isWinner }) => {
   const shiningRef = useRef(null);
 
   useEffect(() => {
-    if (diamondRef.current) {
-      diamondRef.current.play();
-    }
+    diamondRef.current?.play();
   }, []);
 
   useEffect(() => {
     if (shiningRef.current) {
-      if (isSelected || isWinner) {
-        shiningRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME);
-      } else {
-        shiningRef.current.reset();
-      }
+      (isSelected || isWinner) ? shiningRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME) : shiningRef.current.reset();
     }
   }, [isSelected, isWinner]);
 
-  const glowAnimation = useAnimatedStyle(() => {
-    if (isSelected || isWinner) {
-      return {
-        transform: [
-          {
-            scale: withRepeat(
-              withSequence(
-                withTiming(GLOW_MAXIMUM_SCALE, {
-                  duration: GLOW_DURATION / 2,
-                  easing: Easing.ease,
-                }),
-                withTiming(GLOW_INITIAL_SCALE, {
-                  duration: GLOW_DURATION / 2,
-                  easing: Easing.ease,
-                })
-              ),
-              -1,
-              true
-            ),
-          },
-        ],
-      };
-    } else {
-      return {
-        transform: [{ scale: GLOW_INITIAL_SCALE }],
-      };
-    }
-  }, [isSelected, isWinner]);
+  const glowAnimation = useAnimatedStyle(() => ({
+    transform: [
+      {
+        scale: withRepeat(
+          withSequence(
+            withTiming(GLOW_MAXIMUM_SCALE, { duration: GLOW_DURATION / 2, easing: Easing.ease }),
+            withTiming(GLOW_INITIAL_SCALE, { duration: GLOW_DURATION / 2, easing: Easing.ease })
+          ),
+          -1,
+          true
+        ),
+      },
+    ],
+  }), [isSelected, isWinner]);
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          left: touch.x - SIZE / 2,
-          top: touch.y - SIZE / 2,
-        },
-        glowAnimation,
-      ]}
-    >
-   
-      <LottieView
-        ref={diamondRef}
-        source={require('../assets/themes/diamond_theme/diamond.json')}
-        style={styles.lottie}
-        loop={true}
-        autoPlay={false}
-      />
-  
-      <LottieView
-        ref={shiningRef}
-        source={require('../assets/themes/diamond_theme/shining.json')}
-        style={[styles.lottieShine, !(isSelected || isWinner) && { opacity: 0 }]}
-        loop={true}
-        autoPlay={false}
-      />
+    <Animated.View style={[styles.container, { left: touch.x - SIZE / 2, top: touch.y - SIZE / 2 }, glowAnimation]}>
+      <LottieView ref={diamondRef} source={require('../assets/themes/diamond_theme/diamond.json')} style={styles.lottie} loop autoPlay={false} />
+      <LottieView ref={shiningRef} source={require('../assets/themes/diamond_theme/shining.json')} style={[styles.lottieShine, !(isSelected || isWinner) && { opacity: 0 }]} loop autoPlay={false} />
     </Animated.View>
   );
 };

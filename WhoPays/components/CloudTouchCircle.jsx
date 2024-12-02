@@ -9,24 +9,20 @@ const GLOW_MINIMUM_SCALE = 1;
 const GLOW_DURATION = 3000;
 
 const CloudTouchCircle = ({ touch, isSelected, isWinner }) => {
-    const useGlowAnimation = () => {
-        return useAnimatedStyle(() => ({
-            transform: [
-                {
-                    scale: withRepeat(
-                        withSequence(
-                            withTiming(GLOW_MINIMUM_SCALE, { duration: GLOW_DURATION / 2 }),
-                            withTiming(GLOW_INITIAL_SCALE, { duration: GLOW_DURATION / 2 })
-                        ),
-                        -1,
-                        true
+    const glowAnimation = useAnimatedStyle(() => ({
+        transform: [
+            {
+                scale: withRepeat(
+                    withSequence(
+                        withTiming(GLOW_MINIMUM_SCALE, { duration: GLOW_DURATION / 2 }),
+                        withTiming(GLOW_INITIAL_SCALE, { duration: GLOW_DURATION / 2 })
                     ),
-                },
-            ],
-        }));
-    };
-
-    const glowAnimation = useGlowAnimation();
+                    -1,
+                    true
+                ),
+            },
+        ],
+    }));
 
     return (
         <View style={[styles.container, { left: touch.x - SIZE / 2, top: touch.y - SIZE / 2 }]}>

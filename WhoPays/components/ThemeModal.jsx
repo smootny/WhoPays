@@ -10,18 +10,12 @@ const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
 
     const backgroundOpacity = useSharedValue(0);
 
-    const animatedBackgroundStyle = useAnimatedStyle(() => {
-        return {
-            opacity: withTiming(backgroundOpacity.value, { duration: 400 }),
-        };
-    });
+    const animatedBackgroundStyle = useAnimatedStyle(() => ({
+        opacity: withTiming(backgroundOpacity.value, { duration: 400 }),
+    }));
 
     useEffect(() => {
-        if (visible) {
-            backgroundOpacity.value = 1;
-        } else {
-            backgroundOpacity.value = 0;
-        }
+        backgroundOpacity.value = visible ? 1 : 0;
     }, [visible, backgroundOpacity]);
 
 
