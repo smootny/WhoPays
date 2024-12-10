@@ -15,7 +15,7 @@ const SplashScreenAnimation = ({ onAnimationFinish }) => {
 
 
   return (
-    <Animated.View exiting={ZoomIn} style={styles.container}>
+    <Animated.View exiting={ZoomIn.duration(500)} style={styles.container}>
       <LottieView
         ref={animation}
         source={require('@/assets/images/splash-image.json')}

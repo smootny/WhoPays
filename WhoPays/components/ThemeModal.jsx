@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     closeButtonText: {
         fontSize: 20,
-        color: 'white',
+        color: '#ffe11d',
         fontFamily: 'CallDuty',
     },
 });
