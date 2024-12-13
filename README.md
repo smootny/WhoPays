@@ -1,8 +1,8 @@
-# WhoPays - A Fun Decision-Making Game
+# WhoPays?! - A Fun Decision-Making Game
 
-Imagine that! You go out with your friend for a meal and unfortunately you can't split the bill but guess what? You have a solution for that! 
+Imagine that! 👉 You go out with your friend for a meal and unfortunately you can't split the bill but guess what? You have a solution for that! 
 
-Welcome to **WhoPays**, a fun and interactive game app designed to help groups make decisions on who pays for the next round or takes on a challenge. This app allows players to touch the screen, and the app randomly selects a "winner" based on the theme you choose. It's perfect for parties, group outings, or just a fun way to decide things!
+👋 Welcome to **WhoPays**, a fun and interactive game app designed to help groups make decisions on who pays for the next round or takes on a challenge. This app allows players to touch the screen, and the app randomly selects a "winner" based on the theme you choose. It's perfect for parties, group outings, or just a fun way to decide things!
 
 ## Features
 
@@ -24,7 +24,7 @@ Welcome to **WhoPays**, a fun and interactive game app designed to help groups m
 - **Really Awesome Button:** For customizable and animated buttons.
 - **Custom Fonts:** The app uses a custom font called "CallDuty" for a unique look and feel.
 
-## Installation
+## Installation  💻 💻 💻
 
   ```bash
   npm install -g expo-cli
