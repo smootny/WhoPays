@@ -27,7 +27,7 @@ const GameScreen = () => {
     });
 
     const startCounting = () => {
-        setIsCounting(true);
+        setIsCounting(true); 
         countingTimeoutRef.current = setTimeout(() => {
             setIsCounting(false);
             selectWinner();
@@ -43,9 +43,11 @@ const GameScreen = () => {
 
     const panResponder = useRef(
         PanResponder.create({
-            onStartShouldSetPanResponder: () => true,
-            onMoveShouldSetPanResponder: () => true,
+            onStartShouldSetPanResponder: () => !isCounting,
+            onMoveShouldSetPanResponder: () => !isCounting,
             onPanResponderGrant: (evt) => {
+                if (isCounting) return;
+
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
                 if (showOverlay) {
                     Animated.timing(opacityAnim, {
@@ -58,6 +60,7 @@ const GameScreen = () => {
                 }
                 clearTimeout(timeoutRef.current);
                 clearTimeout(countingTimeoutRef.current);
+
                 const { touches: allTouches } = evt.nativeEvent;
                 const newTouches = allTouches.map(touch => ({
                     id: touch.identifier,
@@ -65,6 +68,7 @@ const GameScreen = () => {
                     y: touch.pageY,
                     active: true,
                 }));
+
                 setTouches(prevTouches => {
                     const updatedTouches = [...prevTouches];
                     newTouches.forEach(newTouch => {
@@ -82,8 +86,11 @@ const GameScreen = () => {
                 setWinner(null);
             },
             onPanResponderMove: (evt) => {
+                if (isCounting) return;
+
                 clearTimeout(timeoutRef.current);
                 clearTimeout(countingTimeoutRef.current);
+
                 const { touches: allTouches } = evt.nativeEvent;
                 setTouches(prevTouches => {
                     const updatedTouches = [...prevTouches];
@@ -106,6 +113,8 @@ const GameScreen = () => {
                 setWinner(null);
             },
             onPanResponderRelease: (evt) => {
+                if (isCounting) return;
+
                 const { changedTouches } = evt.nativeEvent;
                 setTouches(prevTouches =>
                     prevTouches.map(touch =>
@@ -114,18 +123,12 @@ const GameScreen = () => {
                             : touch
                     )
                 );
-                timeoutRef.current = setTimeout(startCounting, 2000); 
-            },
-            onPanResponderTerminate: (evt) => {
-                const { changedTouches } = evt.nativeEvent;
-                setTouches(prevTouches =>
-                    prevTouches.map(touch =>
-                        changedTouches.find(t => t.identifier === touch.id)
-                            ? { ...touch, active: false }
-                            : touch
-                    )
-                );
-                timeoutRef.current = setTimeout(startCounting, 2000); 
+
+                timeoutRef.current = setTimeout(() => {
+                    if (!touches.some(touch => touch.active)) {
+                        startCounting();
+                    }
+                }, 2000);
             },
         })
     ).current;
@@ -153,17 +156,17 @@ const GameScreen = () => {
     return (
         <ImageBackground
             source={
-                    theme === 'cloud'
-                        ? require('../assets/themes/cloud_theme/sky.png')
-                            : theme === 'table'
-                                ? require('../assets/themes/table_theme/table.png')
-                                : theme === 'mine'
-                                    ? require('../assets/themes/mine_theme/mine.png')
-                                    : require('../assets/themes/diamond_theme/jewelry.png')
+                theme === 'cloud'
+                    ? require('../assets/themes/cloud_theme/sky.png')
+                    : theme === 'table'
+                        ? require('../assets/themes/table_theme/table.png')
+                        : theme === 'mine'
+                            ? require('../assets/themes/mine_theme/mine.png')
+                            : require('../assets/themes/diamond_theme/jewelry.png')
             }
             style={styles.background}
         >
-            <View style={styles.container} {...panResponder.panHandlers}>
+            <View style={[styles.container]} pointerEvents={isCounting ? 'none' : 'auto'} {...panResponder.panHandlers}>
                 {touches.map(touch => (
                     <TouchCircleComponent
                         key={touch.id}

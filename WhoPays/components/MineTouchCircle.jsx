@@ -22,22 +22,30 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
   const coinRef = useRef(null);
   const backgroundRef = useRef(null);
 
+  // Play coin animation on mount
   useEffect(() => {
-    coinRef.current?.play();
+    if (coinRef.current) {
+      coinRef.current.play();
+    }
   }, []);
 
+  // Handle background animation when selected or winner changes
   useEffect(() => {
     if (backgroundRef.current) {
-      (isSelected || isWinner) ? backgroundRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME) : backgroundRef.current.reset();
+      if (isSelected || isWinner) {
+        backgroundRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME);
+      }
     }
   }, [isSelected, isWinner]);
 
+  // Ensure the background animation loops when it finishes
   const handleBackgroundAnimationFinish = () => {
     if (backgroundRef.current && (isSelected || isWinner)) {
       backgroundRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME);
     }
   };
 
+  // Glow animation for the scaling effect
   const glowAnimation = useAnimatedStyle(() => ({
     transform: [
       {
@@ -54,9 +62,28 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
   }), [isSelected, isWinner]);
 
   return (
-    <Animated.View style={[styles.container, { left: touch.x - SIZE / 2, top: touch.y - SIZE / 2 }, glowAnimation]}>
-      <LottieView ref={backgroundRef} source={require('../assets/themes/mine_theme/background2.json')} style={[styles.lottieShine, !(isSelected || isWinner) && { opacity: 0 }]} loop={false} autoPlay={false} onAnimationFinish={handleBackgroundAnimationFinish} />
-      <LottieView ref={coinRef} source={require('../assets/themes/mine_theme/coin1.json')} style={styles.lottie} loop autoPlay={false} />
+    <Animated.View
+      style={[
+        styles.container,
+        { left: touch.x - SIZE / 2, top: touch.y - SIZE / 2 },
+        glowAnimation,
+      ]}
+    >
+      <LottieView
+        ref={backgroundRef}
+        source={require('../assets/themes/mine_theme/background2.json')}
+        style={[styles.lottieShine, { opacity: isSelected || isWinner ? 1 : 0 }]}
+        loop={false}
+        autoPlay={true} // Ensures immediate playback
+        onAnimationFinish={handleBackgroundAnimationFinish}
+      />
+      <LottieView
+        ref={coinRef}
+        source={require('../assets/themes/mine_theme/coin1.json')}
+        style={styles.lottie}
+        loop
+        autoPlay={true} // Ensures coin starts playing immediately
+      />
     </Animated.View>
   );
 };
@@ -70,7 +97,6 @@ const styles = StyleSheet.create({
   lottieShine: {
     width: SIZE,
     height: SIZE,
-    
   },
   container: {
     position: 'absolute',
