@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
         zIndex: 99,
         fontFamily: "CallDuty",
         color: '#FFF',
-        textShadowColor: 'rgba(0, 0, 0, 1)', // Black outline
-        textShadowOffset: { width: 6, height: 8 }, // Top-left
+        textShadowColor: 'rgba(0, 0, 0, 1)', 
+        textShadowOffset: { width: 6, height: 8 },
         textShadowRadius: 1,
         shadowOpacity: 1,
     },

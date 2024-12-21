@@ -15,7 +15,6 @@ export default function RootLayout() {
     CallDuty: require("@/assets/fonts/CallDuty.ttf"),
   });
 
-  // Check if the image is loaded
   useEffect(() => {
     const imageUri = Image.resolveAssetSource(require("@/assets/images/login-image.png")).uri;
     Image.prefetch(imageUri)
@@ -23,7 +22,6 @@ export default function RootLayout() {
       .catch(() => setImageError(true));
   }, []);
 
-  // Mark app as ready when both fonts and image are loaded
   useEffect(() => {
     if ((fontsLoaded || fontError) && imageLoaded) {
       setAppReady(true);

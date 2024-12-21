@@ -22,14 +22,12 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
   const coinRef = useRef(null);
   const backgroundRef = useRef(null);
 
-  // Play coin animation on mount
   useEffect(() => {
     if (coinRef.current) {
       coinRef.current.play();
     }
   }, []);
 
-  // Handle background animation when selected or winner changes
   useEffect(() => {
     if (backgroundRef.current) {
       if (isSelected || isWinner) {
@@ -38,14 +36,12 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
     }
   }, [isSelected, isWinner]);
 
-  // Ensure the background animation loops when it finishes
   const handleBackgroundAnimationFinish = () => {
     if (backgroundRef.current && (isSelected || isWinner)) {
       backgroundRef.current.play(SHINE_LOOP_START_FRAME, SHINE_LOOP_END_FRAME);
     }
   };
 
-  // Glow animation for the scaling effect
   const glowAnimation = useAnimatedStyle(() => ({
     transform: [
       {
@@ -74,7 +70,7 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
         source={require('../assets/themes/mine_theme/background2.json')}
         style={[styles.lottieShine, { opacity: isSelected || isWinner ? 1 : 0 }]}
         loop={false}
-        autoPlay={true} // Ensures immediate playback
+        autoPlay={true}
         onAnimationFinish={handleBackgroundAnimationFinish}
       />
       <LottieView
@@ -82,7 +78,7 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
         source={require('../assets/themes/mine_theme/coin1.json')}
         style={styles.lottie}
         loop
-        autoPlay={true} // Ensures coin starts playing immediately
+        autoPlay={true} 
       />
     </Animated.View>
   );
