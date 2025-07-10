@@ -35,7 +35,7 @@ Imagine that! 👉 You go out with your friend for a meal and unfortunately you 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/whopays.git
+   git clone https://github.com/smootny/whopays.git
    ```
 
 2. **Navigate to the project directory:**
