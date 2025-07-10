@@ -9,9 +9,8 @@ export default function RootLayout() {
   const [isAppReady, setAppReady] = useState(false);
   const [splashAnimationFinished, setSplashAnimationFinished] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
-  const [fontsLoaded, fontError] = useFonts({
+  const [fontsLoaded] = useFonts({
     CallDuty: require("@/assets/fonts/CallDuty.ttf"),
   });
 
@@ -19,14 +18,14 @@ export default function RootLayout() {
     const imageUri = Image.resolveAssetSource(require("@/assets/images/login-image.png")).uri;
     Image.prefetch(imageUri)
       .then(() => setImageLoaded(true))
-      .catch(() => setImageError(true));
+      .catch(() => setImageLoaded(true));
   }, []);
 
   useEffect(() => {
-    if ((fontsLoaded || fontError) && imageLoaded) {
+    if (fontsLoaded && imageLoaded) {
       setAppReady(true);
     }
-  }, [fontsLoaded, fontError, imageLoaded]);
+  }, [fontsLoaded, imageLoaded]);
 
   if (!isAppReady || !splashAnimationFinished) {
     return (

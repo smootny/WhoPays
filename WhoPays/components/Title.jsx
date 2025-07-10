@@ -1,18 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation } from 'expo-router';
-import { useFonts } from "expo-font";
 
 export default function Title() {
-    const navigation = useNavigation();
-    const [fontsLoaded] = useFonts({
-        "CallDuty": require("../assets/fonts/CallDuty.ttf")
-    });
-
-    if (!fontsLoaded) {
-        return null;
-    }
-
     return (
         <View>
             <Text style={styles.title}>Who</Text>

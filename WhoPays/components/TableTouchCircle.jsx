@@ -28,10 +28,10 @@ const TableTouchCircle = ({ touch, isSelected, isWinner }) => {
         <View style={[styles.container, { left: touch.x - SIZE / 2, top: touch.y - SIZE / 2 }]}>
             {(isSelected || isWinner) && (
                 <Animated.View style={[styles.glowContainer, glowAnimation]}>
-                    <Image source={require('../assets/themes/table_theme/empty_plate.png')} style={styles.image} />
+                    <Image source={require('../assets/themes/table_theme/empty-plate.png')} style={styles.image} />
                 </Animated.View>
             )}
-            <Image source={require('../assets/themes/table_theme/full_plate.png')} style={styles.image} />
+            <Image source={require('../assets/themes/table_theme/full-plate.png')} style={styles.image} />
         </View>
     );
 };

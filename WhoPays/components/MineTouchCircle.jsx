@@ -67,7 +67,7 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
     >
       <LottieView
         ref={backgroundRef}
-        source={require('../assets/themes/mine_theme/background2.json')}
+        source={require('../assets/themes/mine_theme/aura.json')}
         style={[styles.lottieShine, { opacity: isSelected || isWinner ? 1 : 0 }]}
         loop={false}
         autoPlay={true}
@@ -75,7 +75,7 @@ const MineTouchCircle = ({ touch, isSelected, isWinner }) => {
       />
       <LottieView
         ref={coinRef}
-        source={require('../assets/themes/mine_theme/coin1.json')}
+        source={require('../assets/themes/mine_theme/coin.json')}
         style={styles.lottie}
         loop
         autoPlay={true} 
