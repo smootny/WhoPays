@@ -4,34 +4,36 @@
     "slug": "WhoPays",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/splash-animation.png",
-    "scheme": "myapp",
+    "platforms": ["ios"],
+    "scheme": "whopays",
     "userInterfaceStyle": "automatic",
+
+    "assetBundlePatterns": ["**/*"],
+
+    "icon": "./assets/images/icon.png",
+
     "splash": {
-      "image": "./assets/images/splash-animation.png",
+      "image": "./assets/images/login-image.png",
       "resizeMode": "contain",
-      "backgroundColor": "#DB4457"
+      "backgroundColor": "#DB4457",
+      "statusBarStyle": "light"
     },
+
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/splash-animation.png",
-        "backgroundColor": "#ffffff"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.WhoPays",
+      "icon": "./assets/images/icon.png",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/splash-animation.png"
-    },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
-    "experiments": {
-      "typedRoutes": true
+
+    "plugins": ["expo-router", "expo-font"],
+    "experiments": { "typedRoutes": true },
+
+    "updates": {
+      "enabled": false
     }
   }
 }

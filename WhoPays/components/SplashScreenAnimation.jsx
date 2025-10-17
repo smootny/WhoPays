@@ -4,15 +4,12 @@ import { StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 import Animated, { ZoomIn } from "react-native-reanimated";
 
-
 const SplashScreenAnimation = ({ onAnimationFinish }) => {
   const animation = useRef(null);
 
   useEffect(() => {
     animation.current?.play();
   }, []);
-
-
 
   return (
     <Animated.View exiting={ZoomIn.duration(500)} style={styles.container}>

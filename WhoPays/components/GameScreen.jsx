@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, PanResponder, Text, ImageBackground, Animated, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from 'expo-router';
 import DiamondTouchCircle from './DiamondTouchCircle';
 import CloudTouchCircle from './CloudTouchCircle';
 import TableTouchCircle from './TableTouchCircle';
 import MineTouchCircle from './MineTouchCircle';
 import { useFonts } from 'expo-font';
 import * as Haptics from "expo-haptics";
+import RefreshButton from '@/components/RefreshButton';
 
 const GameScreen = () => {
     const route = useRoute();
+    const navigation = useNavigation();
     const { theme } = route.params;
 
     const [touches, setTouches] = useState([]);
@@ -25,6 +28,25 @@ const GameScreen = () => {
     const [fontsLoaded] = useFonts({
         'CallDuty': require('../assets/fonts/CallDuty.ttf'),
     });
+
+    const resetGame = () => {
+        setTouches([]);
+        setSelectedTouch(null);
+        setIsCounting(false);
+        setWinner(null);
+        setShowOverlay(true);
+        opacityAnim.setValue(1);
+        clearTimeout(timeoutRef.current);
+        clearTimeout(countingTimeoutRef.current);
+    };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            navigation.setOptions({
+                headerRight: () => <RefreshButton onRefresh={resetGame} />,
+            });
+        }, [navigation])
+    );
 
     const startCounting = () => {
         setIsCounting(true); 
@@ -175,16 +197,17 @@ const GameScreen = () => {
                         isSelected={touch.id === selectedTouch}
                     />
                 ))}
-                <Text style={styles.counter}>Players: {touches.length}</Text>
+                
                 {showOverlay && (
                     <Animated.View style={[styles.overlay, { opacity: opacityAnim }]}>
-                        <Text style={styles.overlayText}>Touch the screen </Text>
+                        <Text style={styles.overlayText}>Touch the screen</Text>
                         <Image
                             source={require('../assets/images/touch-screen.png')}
                             style={styles.icon}
                         />
                     </Animated.View>
                 )}
+                <Text style={styles.counter}>Players: {touches.length}</Text>
             </View>
         </ImageBackground>
     );
@@ -200,8 +223,8 @@ const styles = StyleSheet.create({
     },
     counter: {
         position: 'absolute',
-        top: 70,
-        right: 20,
+        bottom: 20,
+        right: 145,
         color: '#FFF',
         fontSize: 24,
         fontFamily: 'CallDuty',

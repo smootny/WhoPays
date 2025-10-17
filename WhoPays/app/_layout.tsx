@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import SplashScreenAnimation from "@/components/SplashScreenAnimation";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { Image } from "react-native";
+import BackButton from "@/components/BackButton";
 
 export default function RootLayout() {
   const [isAppReady, setAppReady] = useState(false);
@@ -46,17 +47,18 @@ export default function RootLayout() {
           name="index"
           options={{ title: "back", headerShown: false, headerTransparent: true }}
         />
-        <Stack.Screen
-          name="gameScreen"
-          options={{
-            title: "Game",
-            headerShown: true,
-            headerTransparent: true,
-            headerTitleStyle: {
-              color: "transparent",
-            },
-          }}
-        />
+       <Stack.Screen
+  name="gameScreen"
+  options={{
+    title: "Game",
+    headerShown: true,
+    headerTransparent: true,
+    headerTitleStyle: { color: "transparent" },
+    headerBackVisible: false,
+    headerLeft: () => <BackButton />,
+  }}
+/>
+
       </Stack>
     </Animated.View>
   );

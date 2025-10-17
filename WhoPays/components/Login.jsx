@@ -20,7 +20,6 @@ export default function Login() {
         navigation.navigate('gameScreen', { theme });
     };
 
-
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -60,14 +59,14 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        bottom: 100,
+        bottom: 150,
         alignSelf: 'center',
         zIndex: 2,
         marginVertical: 10,
     },
     themeButton: {
         position: 'absolute',
-        bottom: 60,
+        bottom: 50,
         alignSelf: 'center',
         zIndex: 2,
         marginVertical: 10,
