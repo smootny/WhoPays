@@ -10,7 +10,6 @@ export default function RootLayout() {
   const [isAppReady, setAppReady] = useState(false);
   const [splashAnimationFinished, setSplashAnimationFinished] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-
   const [fontsLoaded] = useFonts({
     CallDuty: require("@/assets/fonts/CallDuty.ttf"),
   });
@@ -48,17 +47,17 @@ export default function RootLayout() {
           options={{ title: "back", headerShown: false, headerTransparent: true }}
         />
        <Stack.Screen
-  name="gameScreen"
-  options={{
-    title: "Game",
-    headerShown: true,
-    headerTransparent: true,
-    headerTitleStyle: { color: "transparent" },
-    headerBackVisible: false,
-    headerLeft: () => <BackButton />,
-  }}
-/>
-
+          name="gameScreen"
+          options={{
+          title: "Game",
+          headerShown: true,
+          headerTransparent: true,
+          headerTitleStyle: { color: "transparent" },
+          headerBackVisible: false,
+          headerLeft: () => <BackButton 
+       />,
+        }}
+      />
       </Stack>
     </Animated.View>
   );

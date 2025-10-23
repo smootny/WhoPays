@@ -15,14 +15,12 @@
     "splash": {
       "image": "./assets/images/login-image.png",
       "resizeMode": "contain",
-      "backgroundColor": "#DB4457",
-      "statusBarStyle": "light"
+      "backgroundColor": "#DB4457"
     },
 
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.anonymous.WhoPays",
-      "icon": "./assets/images/icon.png",
       "buildNumber": "1",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
