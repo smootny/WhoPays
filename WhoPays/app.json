@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "WhoPays",
-    "slug": "WhoPays",
+    "slug": "whopays",
     "version": "1.0.0",
     "orientation": "portrait",
     "platforms": [
@@ -22,7 +22,9 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.sebastianblazejewski.whopays",
       "buildNumber": "1",
-      "infoPlist": { "ITSAppUsesNonExemptEncryption": false }
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "plugins": [
       "expo-router",
@@ -34,6 +36,13 @@
     },
     "updates": {
       "enabled": false
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "81511316-6588-4548-9f7a-7ea86767acb5"
+      }
+    },
+    "owner": "smootny"
   }
 }
