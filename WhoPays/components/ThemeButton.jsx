@@ -10,7 +10,6 @@ const ThemeButton = ({ style, onSelectTheme }) => {
 
   const handleThemeSelect = (selectedTheme) => {
     setTheme(selectedTheme);
-    setModalVisible(false);
     onSelectTheme(selectedTheme);
   };
 

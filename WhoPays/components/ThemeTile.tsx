@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import * as Haptics from "expo-haptics";
 import type { TileProps } from "../constants/types";
+import { BUTTON_SPRING_CONFIG } from "../constants/animation";
 
 const ATouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -18,9 +19,7 @@ export default function ThemeTile({ theme, onSelect, depth = 6, haptics = true }
   const pressTo = (v: 0 | 1) =>
     Animated.spring(pressed, {
       toValue: v,
-      useNativeDriver: true,
-      friction: 7,
-      tension: 200,
+      ...BUTTON_SPRING_CONFIG,
     }).start();
 
   const translateY = pressed.interpolate({ inputRange: [0, 1], outputRange: [0, depth] });

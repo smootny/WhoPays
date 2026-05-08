@@ -2,8 +2,7 @@ import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import SplashScreenAnimation from "@/components/SplashScreenAnimation";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import BackButton from "@/components/BackButton";
 
 export default function RootLayout() {
@@ -36,22 +35,33 @@ export default function RootLayout() {
   }
 
   return (
-    <Animated.View style={{ flex: 1 }} entering={FadeIn.duration(500)}>
+    <View style={{ flex: 1 }}>
       <Stack
         screenOptions={{
           headerShown: false,
+          contentStyle: { backgroundColor: "#000" },
         }}
       >
         <Stack.Screen
           name="index"
-          options={{ title: "back", headerShown: false, headerTransparent: true }}
+          options={{
+            title: "back",
+            headerShown: false,
+            headerTransparent: true,
+            animation: "fade",
+            presentation: "card",
+          }}
         />
        <Stack.Screen
           name="gameScreen"
           options={{
           title: "Game",
+          animation: "fade",
+          presentation: "card",
           headerShown: true,
           headerTransparent: true,
+          headerShadowVisible: false,
+          headerBackground: () => null,
           headerTitleStyle: { color: "transparent" },
           headerBackVisible: false,
           headerLeft: () => <BackButton 
@@ -59,6 +69,6 @@ export default function RootLayout() {
         }}
       />
       </Stack>
-    </Animated.View>
+    </View>
   );
 }
